@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
   }
   }
   goToLink() {
-    window.open('assets/doc/index.htmll', '_blank');
+    window.open('assets/doc/index.html', '_blank');
   }
   logout() {
     var _self = this;
