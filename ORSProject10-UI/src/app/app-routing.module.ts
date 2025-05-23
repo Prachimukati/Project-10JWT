@@ -36,10 +36,14 @@ import { SpinnerComponent} from './spinner/spinner.component';
 import {MyprofileComponent} from './user/myprofile.component';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { StaffmemberlistComponent } from './staff/staffmember-list.component';
-import { OrderComponent } from './order/order.component';
-import { OrderListComponent } from './order/order-list.component';
 import { PhysicianComponent } from './physician/physician.component';
 import { PhysicianListComponent } from './physician/physician-list.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerlistComponent } from './customer/customerlist.component';
+import { ClientComponent } from './client/client.component';
+import { ClientlistComponent } from './client/clientlist.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventorylistComponent } from './inventory/inventorylist.component';
 
 const routes: Routes = [
     {
@@ -163,6 +167,19 @@ const routes: Routes = [
       
     },
 {
+    path: 'client',
+    component: ClientComponent
+},
+{
+path: 'client/:id',
+component: ClientComponent
+
+},
+{
+path: 'clientlist',
+component: ClientlistComponent
+},
+{
     path: 'staff',
     component: StaffMemberComponent
 },
@@ -173,6 +190,32 @@ component: StaffMemberComponent
 },{
 path: 'staffList',
 component: StaffmemberlistComponent
+},
+{
+    path: 'inventory',
+    component: InventoryComponent
+},
+{
+path: 'inventory/:id',
+component: InventoryComponent
+
+},
+{
+path: 'inventorylist',
+component: InventorylistComponent
+},
+{
+    path: 'customer',
+    component: CustomerComponent
+},
+{
+path: 'customer/:id',
+component: CustomerComponent
+
+},
+{
+path: 'customerList',
+component: CustomerlistComponent
 },
 {
     path: 'physician',
@@ -186,19 +229,6 @@ component: PhysicianComponent
 path: 'physicianlist',
 component: PhysicianListComponent
 },
-{
-    path: 'order',
-    component: OrderComponent
-},
-{
-path: 'order/:id',
-component: OrderComponent
-
-},{
-path: 'orderlist',
-component: OrderListComponent
-},
-
     {
         path: 'role',
         component : RoleComponent

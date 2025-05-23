@@ -359,7 +359,41 @@ export class BaseCtl implements OnInit {
     // Clear error message if input is valid
     this[errorField] = '';
   }
-  
+  filterInputS(event: KeyboardEvent, errorField: string, maxLength: number, type: string): void {
+    const charCode = event.which ? event.which : event.keyCode;
+    console.log('charCode=',charCode);
+    const charStr = String.fromCharCode(charCode);
+    let allowedChars: RegExp;
+    let errorMsg: string, lerrorMsg: string;
+
+     switch (type) {
+      case 'char':
+        allowedChars = /^[a-zA-Z\s.]$/;
+        errorMsg = 'Only letters are allowed.';
+        lerrorMsg = 'characters';
+    }
+    const inputElement = event.target as HTMLInputElement;
+    let input: string = inputElement.value;
+    // Numpad key codes range from 96 (Numpad 0) to 105 (Numpad 9)
+    const isNumpadKey = charCode >= 96 && charCode <= 105;
+
+    // Check if the typed character matches the allowed characters
+    if ((!allowedChars.test(charStr) && charCode !== 8 && charCode !== 32 && charCode !== 16 && charCode !== 46)
+      || (type === 'char' && isNumpadKey)) {
+      event.preventDefault();
+      this[errorField] = errorMsg;
+    }
+    else if (charCode !== 8 && input.length >= maxLength) {
+      event.preventDefault();
+      this[errorField] = `Only ${maxLength} ${lerrorMsg} are allowed.`;
+    } else {
+      this[errorField] = '';
+    }
+
+    inputElement.addEventListener('blur', () => {
+      this[errorField] = '';
+    });
+  }
 
   filterInput(event: KeyboardEvent, errorField: string, maxLength: number, type: string): void {
     const charCode = event.which ? event.which : event.keyCode;
@@ -379,10 +413,7 @@ export class BaseCtl implements OnInit {
         errorMsg = 'Only numbers are allowed.';
         lerrorMsg = 'digits';
         break;
-      case 'char':
-        allowedChars = /^[a-zA-Z\s.]$/;
-        errorMsg = 'Only letters are allowed.';
-        lerrorMsg = 'characters';
+     
       default:
         allowedChars = /^[a-zA-Z0-9\s.-]+$/;
         errorMsg = 'Only alphanumeric chars are allowed.';

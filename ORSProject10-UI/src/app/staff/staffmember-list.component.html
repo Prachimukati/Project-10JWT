@@ -1,58 +1,96 @@
 <app-navbar></app-navbar>
+<style>
+  #nnn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-<div class="content-wrapper" 
-     style="padding-top: 3%; padding-bottom: 15; 
-            background: url(assets/files/back1.jpg) no-repeat center center; 
-            background-attachment: fixed; 
-            background-size: cover; 
-            width: auto; 
-            height: 90vh;">
-  
+  .panel-heading {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-inputs {
+    margin-top: 20px;
+  }
+
+  .search-inputs .form-control,
+  .search-inputs .btn {
+    margin-bottom: 10px;
+  }
+
+  .content-wrapper {
+    background: url('assets/files/teahu.png') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: auto;
+    height: 105vh;
+    padding: 20px;
+  }
+
+  .table-responsive {
+    margin-top: 20px;
+  }
+
+  .search-inputs .col-sm-2,
+  .search-inputs .col-sm-1 {
+    padding: 0 5px;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+<div class="content-wrapper">
   <div class="container-fluid">
     <div class="panel panel-primary">
-      <div class="panel-heading" style="height: 50px;">
-        <div class="text-center">
-          <h1 class="text-primary font-weight-bold">{{ 'Staff List' | translate }}</h1>
-        </div>
+      <div class="panel-heading">
+        <h1 class="text-primary font-weight-bold">{{ 'Staff Member List' | translate }}</h1>
       </div>
-
-      <div class="row p-1">
-        <div class="col-sm-1"></div>
-
+      <div class="row search-inputs p-1 justify-content-center">
         <div class="col-sm-2">
-          <input type="text" class="form-control" 
-                 [(ngModel)]="form.searchParams.fullName"
-                 placeholder="{{ 'Search fullName' | translate }}">
+          <input type="text" name="fullName" [(ngModel)]="form.searchParams.fullName" class="form-control"
+            (keydown)="filterInputS($event, 'errorMessagefullName', 20, 'char')"
+            placeholder="{{ 'Enter FullName' | translate }}">
+
+          <span *ngIf="errorMessagefullName" class="alertRedColor">{{ errorMessagefullName }}</span>
         </div>
 
         <div class="col-sm-2">
-          <input type="text" class="form-control" 
-                 [(ngModel)]="form.searchParams.previousEmployer"
-                 placeholder="{{ 'Search previousEmployer' | translate }}">
+          <input type="date" name="joiningDate" [(ngModel)]="form.searchParams.joiningDate" class="form-control"
+            placeholder="{{ 'Enter joiningDate ' | translate }}">
         </div>
+   
+         <div class="col-sm-2">
+          <input type="text" name="previousEmployer" [(ngModel)]="form.searchParams.previousEmployer" class="form-control"
+            (keydown)="filterInputS($event, 'errorMessagepreviousEmployer', 20, 'char')"
+            placeholder="{{ 'Enter previousEmployer' | translate }}">
 
+          <span *ngIf="errorMessagepreviousEmployer" class="alertRedColor">{{ errorMessagepreviousEmployer }}</span>
+        </div>
         <div class="col-sm-2">
-        <select class="form-control" name="divison" id="divison"  [(ngModel)]="form.searchParams.divison" style="cursor: pointer;">
-                  <option [ngValue]="" value="undefined">{{ 'Please divison' | translate }}</option>
-                  <option value="'It">{{ 'It' | translate }}</option>
+          <select class="form-control" name="divison" [(ngModel)]="form.searchParams.divison" aria-label="ngSelected" required>
+            <option [ngValue]="undefined">{{ 'Select divison' | translate }}</option>
+                  <option value="It">{{ 'It' | translate }}</option>
                   <option value="sales">{{ 'sales' | translate }}</option>
                   <option value="Tax">{{ 'Tax' | translate }}</option>
                   <option value="Education">{{ 'Education' | translate }}</option>
                   <option value="Marketing">{{ 'Marketing' | translate }}</option>
-                </select>
-  </div>
-        <div class="col-sm-2">
-          <input type="date" class="form-control" 
-                 [(ngModel)]="form.searchParams.joiningDate"
-                 placeholder="{{ 'Search joiningDate' | translate }}">
+           </select>
+          
         </div>
 
-        <div class="col-sm-1 ml-3">
+        <div class="col-sm-1">
           <button (click)="submit()" class="btn btn-primary">{{ 'Search' | translate }}</button>
         </div>
 
-        <div class="col-lg-2 ml-4">
-          <button (click)="forward('/staff')" type="button" class="btn btn-success">{{ 'Add staff' | translate }}</button>
+        <div class="col-sm-2">
+          <button (click)="forward('/staff')" type="button" class="btn btn-success">
+            {{ 'Add Physician' | translate }}
+          </button>
         </div>
 
         <div class="col-sm-1">
@@ -70,72 +108,53 @@
         {{ form.message }}
       </div>
 
-      <div class="p-1">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped table-hover font-weight-bold text-primary">
-            <thead class="thead-light text-uppercase">
-              <tr>
-                <th>
-                  <input type="checkbox" [(ngModel)]="isMasterSel" (change)="checkUncheckAll($event)" />
-                </th>
-                <th>{{ 'S.No' | translate }}</th>
-                <th>{{ 'FullName' | translate }}</th>
-                <th>{{ 'joiningDate' | translate }}</th>
-                <th>{{ 'divison' | translate }}</th>
-                <th>{{ 'previousEmployer' | translate }}</th>
-                <th>{{ 'Edit' | translate }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let m of form.list; let i = index">
-                <td>
-                  <input type="checkbox" #checkboxes (change)="checklistUpdate()" [id]="m.id" />
-                </td>
-                <td>{{ (form.pageNo * 5) + i + 1 }}</td>
-                <td>{{ m.fullName }}</td>
-  
-                <td>{{ m.joiningDate | date: 'dd-MM-yyyy' }}</td>
-                  <td>{{ m.divison }}</td>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover font-weight-bold text-dark">
+          <thead class="thead-dark text-uppercase">
+            <tr align="center">
+              <th><input type="checkbox" [(ngModel)]="isMasterSel" name="list_name"
+                  (change)="checkUncheckAll($event)" /></th>
+              <th>{{ 'S.No' | translate }}</th>
+              <th>{{ 'Full Name' | translate }}</th>
+              <th>{{ 'joiningDate ' | translate }}</th>
+              <th>{{ 'divison' | translate }}</th>
+              <th>{{ 'previousEmployer' | translate }}</th>
+              <th>{{ 'Edit' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of form.list; let i = index" align="center">
+              <td><input type="checkbox" #checkboxes (change)="checklistUpdate()" name="list_name" [id]="m.id" /></td>
+              <td>{{ (form.pageNo * 5) + i + 1 }}</td>
+              <td>{{ m.fullName }}</td>
+              <td>{{ m.joiningDate | date:'yyyy-MM-dd' }}</td>
+              <td>{{ m.divison }}</td>
+              <td>{{m.previousEmployer}}</td>
 
-                <td>{{ m.previousEmployer }}</td>
-                <td>
-                  <a (click)="forward('/staff/' + m.id)" style="cursor: pointer;">
-                    <i class="fa fa-edit text-info"></i>
-                  </a>
-                  <!--
-                  <a (click)="delete(m.id)" style="cursor: pointer;">
-                    <i class="fa fa-trash text-danger"></i>
-                  </a>
-                  -->
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <table style="width: 100%;">
-          <tr>
-            <td style="width: 50%;">
-              <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">
-                {{ 'Previous' | translate }}
-              </button>
-            </td>
-
-            <td *ngIf="form.list.length != 0" style="width: 50%;"></td>
-
-            <td *ngIf="form.list.length == 0" style="width: 50%;">
-              <a class="btn btn-warning mr-1" [routerLink]="['/staffList']" (click)="exit()">
-                {{ 'Back' | translate }}
-              </a>
-            </td>
-
-            <td>
-              <button (click)="next()" [disabled]="nextList == 0" type="button" class="btn btn-info">
-                {{ 'Next' | translate }}
-              </button>
-            </td>
-          </tr>
+              <td>
+                <button class="fa fa-edit text-primary" id="nnn" (click)="forward('/staff/' + m.id)">
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
+
+        <div class="d-flex justify-content-between mt-3">
+          <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">{{ 'Previous' | translate }}</button>
+
+          <div>
+            <a class="btn btn-warning mr-1" [routerLink]="['/staffList']" (click)="exit()">
+              {{ 'Reset' | translate }}
+            </a>
+          </div>
+
+          <div *ngIf="form.list.length == 0">
+            <a class="btn btn-warning mr-1" [routerLink]="['/staffList']" (click)="exit()">
+              {{ 'Back' | translate }}
+            </a>
+          </div>
+          <button (click)="next()" [disabled]="nextList == 0" class="btn btn-info">{{ 'Next' | translate }}</button>
+        </div>
       </div>
     </div>
   </div>

@@ -22,10 +22,10 @@ public class StaffMemberDTO extends BaseDTO{
 	
 
 	@Column(name = "DIVISON", length = 100)
-	private String divison = null;
+	private String divison ;
 	
 	@Column(name = "PREVIOUSEMPLOYER", length = 100)
-	private String previousEmployer = null;
+	private String previousEmployer;
 
 	public String getFullName() {
 		return fullName;
@@ -60,44 +60,44 @@ public class StaffMemberDTO extends BaseDTO{
 	}
 	
 	public String getKey() {
-		return divison;
+		return id + "";
 	}
-
+	
 	@Override
 	public String getValue() {
-		// TODO Auto-generated method stub
-		return divison;
+		return "previousEmployer";
 	}
+
 
 	@Override
 	public String getUniqueKey() {
 		// TODO Auto-generated method stub
-		return "divison";
+		return "previousEmployer";
 	}
 
 	@Override
 	public String getUniqueValue() {
 		// TODO Auto-generated method stub
-		return divison;
+		return "previousEmployer";
 	}
 
 	@Override
 	public String getLabel() {
 		// TODO Auto-generated method stub
-		return divison;
+		return "previousEmployer";
 	}
 
 	@Override
 	public LinkedHashMap<String, String> orderBY() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("divison", "asc");
+		map.put("previousEmployer", "asc");
 		return map;
 	}
 
 	@Override
 	public LinkedHashMap<String, Object> uniqueKeys() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("divison", divison);
+		map.put("previousEmployer", previousEmployer);
 		return map;
 	}
 

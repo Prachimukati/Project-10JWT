@@ -58,7 +58,7 @@
                 <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
               </div>
               <input type="text" name="fullName" [(ngModel)]="form.data.fullName" class="form-control"
-                (keydown)="filterInput($event, 'errorMessagefullName', 20, 'char')"
+                     (keydown)="filterInputS($event, 'errorMessagefullName', 20, 'char')"
                 placeholder="{{ 'Enter fullName' | translate }}">
             </div>
             <span *ngIf="errorMessagefullName" class="alertRedColor">{{ errorMessagefullName }}</span>

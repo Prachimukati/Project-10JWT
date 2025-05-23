@@ -83,16 +83,6 @@ color: rgb(235, 6, 6);
     <div class="col-sm-2"></div>
     <ul class="nav navbar-nav pl-2 ">
 
-      <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
-      id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <font style="color: white;">{{' Order' | translate}}</font>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" [routerLink]="['/order']"><i class="fa fa-user"></i> &nbsp; &nbsp;{{'Add Order' |
-        translate}}</a>
-      <a class="dropdown-item" [routerLink]="['/orderlist']"><i class="fa fa-list"></i>&nbsp; {{'Order List' | translate}}</a>
-    </div>
-
        <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
       id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <font style="color: white;">{{'Staff member' | translate}}</font>
@@ -102,7 +92,15 @@ color: rgb(235, 6, 6);
         translate}}</a>
       <a class="dropdown-item" [routerLink]="['/staffList']"><i class="fa fa-list"></i>&nbsp; {{'Staff List' | translate}}</a>
     </div>
-    
+    <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
+      id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <font style="color: white;">{{'Client ' | translate}}</font>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/client']"><i class="fa fa-user"></i> &nbsp; &nbsp;{{'Add Client' |
+        translate}}</a>
+      <a class="dropdown-item" [routerLink]="['/clientlist']"><i class="fa fa-list"></i>&nbsp; {{'Client List' | translate}}</a>
+    </div>
        <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
       id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <font style="color: white;">{{'Physician ' | translate}}</font>
@@ -111,6 +109,24 @@ color: rgb(235, 6, 6);
       <a class="dropdown-item" [routerLink]="['/physician']"><i class="fa fa-user"></i> &nbsp; &nbsp;{{'Add Physician' |
         translate}}</a>
       <a class="dropdown-item" [routerLink]="['/physicianlist']"><i class="fa fa-list"></i>&nbsp; {{'Physician List' | translate}}</a>
+    </div>
+     <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
+      id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <font style="color: white;">{{'Inventory ' | translate}}</font>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/inventory']"><i class="fa fa-user"></i> &nbsp; &nbsp;{{'Add Inventory' |
+        translate}}</a>
+      <a class="dropdown-item" [routerLink]="['/inventorylist']"><i class="fa fa-list"></i>&nbsp; {{'Inventory List' | translate}}</a>
+    </div>
+       <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
+      id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <font style="color: white;">{{'Customer ' | translate}}</font>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/customer']"><i class="fa fa-user"></i> &nbsp; &nbsp;{{'Add Customer' |
+        translate}}</a>
+      <a class="dropdown-item" [routerLink]="['/customerList']"><i class="fa fa-list"></i>&nbsp; {{'Customer List' | translate}}</a>
     </div>
       <li class="nav-item dropdown" style="padding-left: 5px;"><a class="nav-link dropdown-toggle" [routerLink]="['/#']"
           id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

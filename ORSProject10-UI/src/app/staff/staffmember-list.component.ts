@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StaffmemberlistComponent extends BaseListCtl{
 myKey = "";
-  errorMessageFullName: string = '';
+errorMessageFullName: string = '';
 
 
   public form = {
@@ -32,7 +32,7 @@ myKey = "";
   
 
   constructor(public locator: ServiceLocatorService, public route: ActivatedRoute, private httpClient: HttpClient) {
-    super(locator.endpoints.PHYSICIAN, locator, route);
+    super(locator.endpoints.STAFF, locator, route);
   }
 
 

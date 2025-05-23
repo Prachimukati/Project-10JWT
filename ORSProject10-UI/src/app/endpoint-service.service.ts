@@ -13,7 +13,11 @@ export class EndpointServiceService {
   public USER = this.SERVER_URL + "/User";
   public STAFF = this.SERVER_URL + "/Staff";
   public ORDER = this.SERVER_URL + "/Order";
-    public PHYSICIAN = this.SERVER_URL + "/Physician";
+  public PHYSICIAN = this.SERVER_URL + "/Physician";
+  public CUSTOMER = this.SERVER_URL + "/Customer";
+  public CLIENT = this.SERVER_URL + "/Client";
+ public INVENTORY = this.SERVER_URL + "/Inventory";
+
 
 
   public ROLE = this.SERVER_URL + "/Role";

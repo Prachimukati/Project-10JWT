@@ -1,5 +1,6 @@
 package com.rays.ctl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,32 +19,19 @@ import com.rays.service.StaffMemberServiceInt;
 @RestController
 @RequestMapping(value = "Staff") 
 public class StaffMemberCtl extends BaseCtl<StaffMemberForm, StaffMemberDTO, StaffMemberServiceInt>{
-	@Autowired
-	private StaffMemberServiceInt staffmemberserviceint;
 	
 	@GetMapping("/preload")
 	public ORSResponse preload() {
-		System.out.println("inside preload");
 		ORSResponse res = new ORSResponse(true);
-		StaffMemberDTO dto = new StaffMemberDTO();
+		HashMap<Integer, String> map=new HashMap<Integer, String>();
+		map.put(1, "It");
+		map.put(2, "sales");
+		map.put(3, "Education");
 		
-		List<DropdownList> list = staffmemberserviceint.search(dto, userContext);
-		res.addResult("stafflist", list);
+		
+		res.addResult("stafflist", map);
 		return res;
 	}
 
-	@GetMapping("name/{name}")
-	public ORSResponse get(@PathVariable String name) {
-		ORSResponse res = new ORSResponse(true);
-		StaffMemberDTO dto = baseService.findByName(name, userContext);
-		
-		if (dto != null) {
-			res.addData(dto);
-		} else {
-			res.setSuccess(false);
-			res.addMessage("Record not found");
-		}
-		return res;
-	}
 	
 }

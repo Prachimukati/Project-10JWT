@@ -53,10 +53,14 @@ import { AuthService } from './auth.service';
 import {MyprofileComponent} from './user/myprofile.component';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { StaffmemberlistComponent } from './staff/staffmember-list.component';
-import { OrderComponent } from './order/order.component';
-import { OrderListComponent } from './order/order-list.component';
 import { PhysicianComponent } from './physician/physician.component';
 import { PhysicianListComponent } from './physician/physician-list.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerlistComponent } from './customer/customerlist.component';
+import { ClientComponent } from './client/client.component';
+import { ClientlistComponent } from './client/clientlist.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventorylistComponent } from './inventory/inventorylist.component';
 
 
 export function myHttpLoader(http: HttpClient) {
@@ -105,10 +109,14 @@ export function myHttpLoader(http: HttpClient) {
     MyprofileComponent,
     StaffMemberComponent,
     StaffmemberlistComponent,
-    OrderComponent,
-    OrderListComponent,
     PhysicianComponent,
     PhysicianListComponent,
+    CustomerComponent,
+    CustomerlistComponent,
+    ClientComponent,
+    ClientlistComponent,
+    InventoryComponent,
+    InventorylistComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ import { ServiceLocatorService } from '../service-locator.service';
 })
 export class PhysicianComponent extends BaseCtl {
   errorMessageTitle: string = '';
-  errorMessageFullName: string = '';
+  errorMessagefullName: string = '';
 
   constructor(public locator: ServiceLocatorService, public route: ActivatedRoute) {
     super(locator.endpoints.PHYSICIAN, locator, route);
@@ -42,17 +42,17 @@ export class PhysicianComponent extends BaseCtl {
 
     if (!alphabetPattern.test(inputChar) && !['Backspace', 'Delete', 'Tab'].includes(inputChar)) {
       event.preventDefault();
-      this.errorMessageFullName = 'Only alphabets are allowed.';
+      this.errorMessagefullName = 'Only alphabets are allowed.';
       return;
     }
 
-    if (inputValue.length < 3) {
-      this.errorMessageFullName = 'fullName must be at least 3 characters long.';
-    } else if (inputValue.length > 15) {
-      this.errorMessageFullName = 'fullName must not exceed 15 characters.';
-    } else {
-      this.errorMessageFullName = '';  // Clear error message if valid
-    }
+  //  else if (inputValue.length < 3) {
+  //     this.errorMessagefullName = 'fullName must be at least 3 characters long.';
+  //   } else if (inputValue.length > 15) {
+  //     this.errorMessagefullName = 'fullName must not exceed 15 characters.';
+  //   } else {
+  //     this.errorMessagefullName = '';  // Clear error message if valid
+  //   }
   }
 
   validateAlphabetInput(event) {

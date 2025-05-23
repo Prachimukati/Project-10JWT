@@ -67,8 +67,8 @@ public class FrontCtl extends HandlerInterceptorAdapter {
 		 * "set-cookie,Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
 		 * );
 		 * 
-		 * PrintWriter out = response.getWriter(); out.
-		 * print("{\"success\":\"false\",\"error\":\"OOPS! Your session has been expired\"}"
+		 * PrintWriter out = response.getWriter(); 
+		 * out.print("{\"success\":\"false\",\"error\":\"OOPS! Your session has been expired\"}"
 		 * ); out.close(); System.out.println("going to return false ");
 		 * 
 		 * return false; } } System.out.println("going to return true"); return true; }

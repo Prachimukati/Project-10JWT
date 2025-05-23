@@ -59,7 +59,7 @@
       <div class="row search-inputs p-1 justify-content-center">
         <div class="col-sm-2">
           <input type="text" name="fullName" [(ngModel)]="form.searchParams.fullName" class="form-control"
-            (keydown)="filterInput($event, 'errorMessagefullName', 20, 'char')"
+            (keydown)="filterInputS($event, 'errorMessagefullName', 20, 'char')"
             placeholder="{{ 'Enter FullName' | translate }}">
 
           <span *ngIf="errorMessagefullName" class="alertRedColor">{{ errorMessagefullName }}</span>
@@ -87,8 +87,9 @@
         <div class="col-sm-2">
           <select class="form-control" name="specialization" [(ngModel)]="form.searchParams.specialization" aria-label="ngSelected" required>
             <option [ngValue]="undefined">{{ 'Select Specialization' | translate }}</option>
-            <option *ngFor="let phy of form.preload.phyList" [value]="phy.key">{{ phy.value }}</option>
-          </select>
+                  <option value="Neurologist">{{'Neurologist' | translate}} </option>
+                  <option value="Dentist">{{'Dentist' | translate}} </option>
+                          </select>
           
         </div>
 
